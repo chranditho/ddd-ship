@@ -12,6 +12,7 @@
 
     <properties>
         <postgresql.version>42.7.8</postgresql.version>
+        <minio.version>8.5.13</minio.version>
     </properties>
 
     <dependencies>
@@ -39,6 +40,7 @@
         <dependency>
             <groupId>io.minio</groupId>
             <artifactId>minio</artifactId>
+            <version>${minio.version}</version>
         </dependency>
     </dependencies>
 

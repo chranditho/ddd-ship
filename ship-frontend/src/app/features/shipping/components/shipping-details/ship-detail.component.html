@@ -1,0 +1,68 @@
+<section class="page-heading max-width-container">
+  <div class="section-grid max-width">
+    <h2 class="page-heading__heading">
+      New shipping for
+      @if (ship) {
+        <span class="page-heading__highlight">{{
+          ship.name | uppercase
+        }}</span>
+      }
+    </h2>
+  </div>
+</section>
+
+<section class="shipping-area max-width-container">
+  <div class="section-grid max-width">
+    <div class="cargo-area">
+      @if (ship) {
+        <app-cargos
+          [ship]="ship"
+          [showLoaded]="false"
+          [showLoadObserve]="cargoLoadSubject.asObservable()"
+          (shipUpdated)="onShipLoadUpdated($event)"
+        ></app-cargos>
+      }
+    </div>
+    <div class="ship-area">
+      <div class="ship-image">
+        <img src="/img/ship.jpg" alt="ship"/>
+      </div>
+      <div class="ship-cargo">
+        <div class="ship-cargo-list">
+          @if (ship) {
+            <app-cargos
+              [ship]="ship"
+              [showLoaded]="true"
+              (shipUpdated)="onShipLoadUpdated($event)"
+            ></app-cargos>
+          }
+        </div>
+        <div class="ship-weight">
+          <p>
+            Current Weight:
+            @if (ship) {
+              <span class="ship-weight-status">
+                {{ ship.weight }} / {{ ship.maxweight }}
+              </span>
+            }
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shipping-cta max-width-container">
+  <div class="section-grid max-width">
+    <div class="shipping-back">
+      <button type="button" class="button__cancel" (click)="cancel()">
+        Cancel
+      </button>
+    </div>
+    <div class="shipping-embark">
+      <button type="button" class="button__disembark" (click)="disembark()">
+        Start Journey
+      </button>
+    </div>
+  </div>
+</section>
