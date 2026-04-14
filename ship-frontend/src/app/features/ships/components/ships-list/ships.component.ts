@@ -1,5 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {Router, RouterLink} from '@angular/router';
+import {Router} from '@angular/router';
 import {Store} from "@ngrx/store";
 import {AsyncPipe} from "@angular/common";
 import {Ship, ShippingState} from "../../models/ship";
@@ -12,8 +12,7 @@ import * as ShipActions from "../../store/actions/ship.actions";
   templateUrl: './ships.component.html',
   styleUrls: ['./ships.component.css'],
   imports: [
-    AsyncPipe,
-    RouterLink
+    AsyncPipe
   ]
 })
 export class ShipsComponent implements OnInit {

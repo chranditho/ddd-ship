@@ -1,6 +1,5 @@
 import {createAction, props} from "@ngrx/store";
 import {Ship} from "../../models/ship";
-import {NewShipRequest} from "../../models/new-ship-request";
 
 const shipActions = {
   loadShips: '[Ship] Load Ships',
@@ -22,11 +21,6 @@ export const loadShipsSuccess = createAction(
 
 export const loadShipsFailed = createAction(
   shipActions.loadShipsFailed
-);
-
-export const addShip = createAction(
-  shipActions.addShip,
-  props<NewShipRequest>()
 );
 
 export const addShipSuccess = createAction(
