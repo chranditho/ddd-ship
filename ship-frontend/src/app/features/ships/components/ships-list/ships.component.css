@@ -5,12 +5,6 @@
   margin-bottom: 0;
 }
 
-.new-ship__button {
-  justify-self: right;
-  grid-column: 10 / span 3;
-  background-color: white;
-}
-
 .ship {
   grid-column: span 3;
   max-height: 300px;

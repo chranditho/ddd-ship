@@ -1,5 +1,5 @@
 import {Component, inject, OnInit} from "@angular/core";
-import {Location, NgOptimizedImage, UpperCasePipe} from "@angular/common";
+import {Location, UpperCasePipe} from "@angular/common";
 import {CargosComponent} from "../cargos/cargos.component";
 import {Ship} from "../../models/ship";
 import {Subject} from "rxjs";
@@ -12,11 +12,7 @@ import {DisembarkService} from "../../services/disembark.service";
   selector: 'app-ship-detail',
   templateUrl: './ship-detail.component.html',
   styleUrls: ['./ship-detail.component.css'],
-  imports: [
-    UpperCasePipe,
-    CargosComponent,
-    NgOptimizedImage
-  ]
+  imports: [UpperCasePipe, CargosComponent]
 })
 export class ShipDetailComponent implements OnInit {
   ship!: Ship;
@@ -27,8 +23,6 @@ export class ShipDetailComponent implements OnInit {
   private readonly disembarkService = inject(DisembarkService);
   private readonly location = inject(Location);
   private readonly router = inject(Router);
-
-  constructor() {}
 
   ngOnInit(): void {
     this.getShip();
@@ -43,11 +37,7 @@ export class ShipDetailComponent implements OnInit {
     if (this.ship) {
       this.disembarkService
         .releaseShip(this.ship)
-        .subscribe((shippingSummary) =>
-          this.router.navigate(
-            [`/ships/${shippingSummary.shipId}/shipping/${shippingSummary.id}`]
-          )
-        );
+        .subscribe((shippingSummary) => this.router.navigate([`/ships/${shippingSummary.shipId}/shipping/${shippingSummary.id}`]));
     }
   }
 

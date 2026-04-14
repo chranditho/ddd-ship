@@ -20,18 +20,5 @@ export class ShipEffects {
         ))
     )
   });
-
-  createShip$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ShipActions.addShip),
-      exhaustMap((ship) =>
-        this.shipService.addShip(ship)
-        .pipe(
-          map(ship => (ShipActions.addShipSuccess(ship))),
-          catchError(() => of(ShipActions.addShipFailure({error: 'Failed to add ship'})))
-        )
-      )
-    )
-  })
 }
 
