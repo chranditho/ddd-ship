@@ -32,9 +32,9 @@ echo ">> PostgreSQL is up."
 # ─── 4. Create bucket & upload cat images ────────────────────────────
 echo ">> Setting up MinIO bucket and uploading cat pictures..."
 
-docker run --rm --network host \
+docker run --rm --network ddd-ship_ship-network \
   --entrypoint sh minio/mc -c "
-    mc alias set local http://localhost:9000 hexagonminio hexagonminio && \
+    mc alias set local http://hexagonship-minio:9000 hexagonminio hexagonminio && \
     mc mb --ignore-existing local/catains && \
     echo 'Bucket catains ready.'
   "
@@ -65,10 +65,10 @@ for i in "${!IMAGE_IDS[@]}"; do
 done
 
 echo ">> Uploading catain images to MinIO..."
-docker run --rm --network host \
+docker run --rm --network ddd-ship_ship-network \
   -v "$TMPDIR_CATS:/cats:ro" \
   --entrypoint sh minio/mc -c "
-    mc alias set local http://localhost:9000 hexagonminio hexagonminio
+    mc alias set local http://hexagonship-minio:9000 hexagonminio hexagonminio
     for f in /cats/*; do
       mc cp \"\$f\" local/catains/\$(basename \"\$f\")
     done
